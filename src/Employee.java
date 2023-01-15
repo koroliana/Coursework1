@@ -1,25 +1,38 @@
 public class Employee {
-    static int id = 0;
+    static int count = 0;
+    private final int id;
     private String fullName;
-    private byte department;
+    private int department;
     private int salary;
 
-    public Employee(String fullName, byte department, int salary) {
-        id = id + 1;
+    public Employee(String fullName, int department, int salary) {
+        this.id=count+1;
         this.fullName = fullName;
         this.department = department;
         this.salary = salary;
     }
 
-    public static int getId() {
+    @Override
+    public String toString() {
+        return fullName + ", отдел: " + department + ", зарплата: " + salary;
+    }
+    public int getId() {
         return id;
+    }
+
+    public static int getCount() {
+        return count;
     }
 
     public String getFullName() {
         return fullName;
     }
 
-    public byte getDepartment() {
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public int getDepartment() {
         return department;
     }
 
