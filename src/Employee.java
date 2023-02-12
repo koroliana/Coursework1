@@ -1,12 +1,13 @@
 public class Employee {
-    static int count = 0;
+    private static int counterId = 0;
     private final int id;
     private String fullName;
     private int department;
     private int salary;
 
     public Employee(String fullName, int department, int salary) {
-        this.id=count+1;
+        this.id=counterId +1;
+        counterId++;
         this.fullName = fullName;
         this.department = department;
         this.salary = salary;
@@ -20,8 +21,8 @@ public class Employee {
         return id;
     }
 
-    public static int getCount() {
-        return count;
+    public static int getCounterId() {
+        return counterId;
     }
 
     public String getFullName() {
