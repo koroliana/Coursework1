@@ -194,8 +194,35 @@ public class EmployeeBook {
             }
     }
 
+    public void changeSalary (String fullName, int newSalary) {
+        for(Employee employee: base) {
+            if (fullName.equals(employee.getFullName())) {
+                employee.setSalary(newSalary);
+            }
+        }
+    }
 
+    public void changeDepartment (String fullName, byte newDepartment) {
+        for(Employee employee: base) {
+            if (fullName.equals(employee.getFullName())) {
+                employee.setDepartment(newDepartment);
+            }
+        }
+    }
+
+    public void printByDepartment () {
+        for (int i=1; i<10; i++) {
+            System.out.println("Отдел "+i+":");
+            for (Employee employee : base) {
+                if (employee.getDepartment() == i) {
+                    System.out.println(employee.getFullName());
+                }
+            }
+        }
+
+    }
 }
+
 
 
 

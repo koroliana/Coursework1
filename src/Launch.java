@@ -16,6 +16,8 @@ public class Launch {
         employeeBook.addEmloyee("Дранкова Долена Петровна",  7, 55_000);
         employeeBook.printBase();
         System.out.println();
+        employeeBook.printByDepartment();
+        System.out.println();
         System.out.println("Сумма затрат на ЗП: " + employeeBook.summarizeSalaries());
         System.out.println("Сотрудник с минимальной ЗП - " + employeeBook.findMinSalaryEmployee());
         System.out.println("Сотрудник с максимальной ЗП - " + employeeBook.findMaxSalaryEmployee());
@@ -39,6 +41,12 @@ public class Launch {
         employeeBook.removeEmployee("Третьяков Ивангай Кошкович");
         employeeBook.removeEmployee(5);
         employeeBook.findEmployeesWithLessSalary(300000);
+        System.out.println();
+        employeeBook.changeSalary("Дранкова Долена Петровна", 80000);
+        employeeBook.changeDepartment("Дранкова Долена Петровна", (byte) 1);
+        employeeBook.printBase();
+        System.out.println();
+        employeeBook.printByDepartment();
 
 
 
