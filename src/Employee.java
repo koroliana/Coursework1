@@ -21,10 +21,6 @@ public class Employee {
         return id;
     }
 
-    public static int getCounterId() {
-        return counterId;
-    }
-
     public String getFullName() {
         return fullName;
     }
