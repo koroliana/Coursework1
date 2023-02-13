@@ -1,6 +1,9 @@
 public class Launch {
     public static void main(String[] args) {
         EmployeeBook employeeBook = new EmployeeBook();
+        //employeeBook.findMinSalaryEmployee();
+        //employeeBook.findMaxSalaryEmployee();
+        //employeeBook.calculateAverageSalary();
         employeeBook.addEmloyee("Васичкин Василий",  8, 200_000);
         Employee employee1 = new Employee("Василиса Прекрасная Надеждовна", 1, 145_000);
         employeeBook.addEmloyee(employee1);
@@ -47,9 +50,13 @@ public class Launch {
         employeeBook.printBase();
         System.out.println();
         employeeBook.printByDepartment();
+        System.out.println();
+        //employeeBook.findMaxSalaryDepartmentEmployee(3);
+        //employeeBook.findMinSalaryDepartmentEmployee(3);
+        //employeeBook.calculateAverageDepartmentSalary(3);
 
-
+        }
 
 
     }
-}
+
