@@ -122,70 +122,60 @@ public class EmployeeBook {
         return sum;
     }
 
-    public Employee findMinSalaryDepartmentEmployee(int department) {
-        ArrayList<Employee> departmentBase = new ArrayList<>();
-        for (Employee employee : base) {
-            if (employee.getDepartment() == department) {
-                departmentBase.add(employee);
-            }
-        }
-        if (departmentBase.isEmpty()) {
-            throw new RuntimeException("В " + department + " отделе нет сотрудников!");
+    public Employee findMinDepartmentSalaryEmployee(int department, int maxSalary) {
+        if (maxSalary <= 0) {
+            throw new RuntimeException("Максимальная зарплата в вашей компании должна быть больше нуля!");
         }
         else {
-            Employee minSalaryDepartmentEmployee = departmentBase.get(0);
-            for (int i = 1; i < departmentBase.size(); i++) {
-                Employee employee = departmentBase.get(i);
-                if (employee.getSalary() < minSalaryDepartmentEmployee.getSalary()) {
-                    minSalaryDepartmentEmployee = employee;
+            boolean departmentIsEmpty = true;
+            int minDepartmentSalary = maxSalary;
+            Employee minDepartmentSalaryEmployee = null;
+            for (Employee employee : base) {
+                if (employee.getDepartment() == department && employee.getSalary() < minDepartmentSalary){
+                    departmentIsEmpty = false;
+                    minDepartmentSalary = employee.getSalary();
+                    minDepartmentSalaryEmployee = employee;
                 }
-
             }
-            return minSalaryDepartmentEmployee;
+            if (departmentIsEmpty) {
+                throw new RuntimeException("В " + department + " отделе нет сотрудников!");
+            }
+            return minDepartmentSalaryEmployee;
         }
+
 
     }
 
-    public Employee findMaxSalaryDepartmentEmployee(int department) {
-        ArrayList<Employee> departmentBase = new ArrayList<>();
+    public Employee findMaxDepartmentSalaryEmployee(int department) {
+        boolean departmentIsEmpty = true;
+        int maxDepartmentSalary = 0;
+        Employee maxDepartmentSalaryEmployee = null;
         for (Employee employee : base) {
-            if (employee.getDepartment() == department) {
-                departmentBase.add(employee);
+            if (employee.getDepartment() == department && employee.getSalary() > maxDepartmentSalary){
+                departmentIsEmpty = false;
+                maxDepartmentSalary = employee.getSalary();
+                maxDepartmentSalaryEmployee = employee;
             }
         }
-        if (departmentBase.isEmpty()) {
-            throw new RuntimeException("В "+ department +" отделе нет сотрудников!");
+        if (departmentIsEmpty) {
+            throw new RuntimeException("В " + department + " отделе нет сотрудников!");
         }
-        else {
-            Employee maxSalaryDepartmentEmployee = departmentBase.get(0);
-            for (int i = 1; i < departmentBase.size(); i++) {
-                Employee employee = departmentBase.get(i);
-                if (employee.getSalary() > maxSalaryDepartmentEmployee.getSalary()) {
-                    maxSalaryDepartmentEmployee = employee;
-                }
-
-            }
-            return maxSalaryDepartmentEmployee;
-        }
+        return maxDepartmentSalaryEmployee;
     }
 
     public double calculateAverageDepartmentSalary(int department) {
-        ArrayList<Employee> departmentBase = new ArrayList<>();
+        int empInDepartment = 0;
+        int sum = 0;
         for (Employee employee : base) {
-            if (employee.getDepartment() == department) {
-                departmentBase.add(employee);
+            if (employee.getDepartment() == department){
+                sum = sum + employee.getSalary();
+                empInDepartment++;
             }
         }
-        if (departmentBase.isEmpty()) {
+        if (empInDepartment == 0) {
             throw new RuntimeException("В " + department + " отделе нет сотрудников!");
         }
-        else {
-            int sum = 0;
-            for (Employee employee : departmentBase) {
-                sum = sum + employee.getSalary();
-            }
-            return sum / base.size();
-        }
+        return sum / (double) empInDepartment;
     }
 
     public void indexDepartmentSalaries(int department, int percent) {
@@ -214,10 +204,10 @@ public class EmployeeBook {
 
     public void changeSalary (String fullName, int newSalary) {
         for(Employee employee: base) {
-            if (fullName.equals(employee.getFullName())) {
-                employee.setSalary(newSalary);
+                if (fullName.equals(employee.getFullName())) {
+                    employee.setSalary(newSalary);
+                }
             }
-        }
     }
 
     public void changeDepartment (String fullName, byte newDepartment) {

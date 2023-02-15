@@ -6,10 +6,16 @@ public class Employee {
     private int salary;
 
     public Employee(String fullName, int department, int salary) {
-        this.id=counterId ++;
-        this.fullName = fullName;
-        this.department = department;
-        this.salary = salary;
+        if (salary <= 0) {
+            throw new RuntimeException("Зарплата в вашей компании должна быть больше нуля!");
+        }
+        else {
+            this.id=counterId ++;
+            this.fullName = fullName;
+            this.department = department;
+            this.salary = salary;
+        }
+
     }
 
     @Override
@@ -41,6 +47,12 @@ public class Employee {
     }
 
     public void setSalary(int salary) {
-        this.salary = salary;
+        if (salary <= 0) {
+            throw new RuntimeException("Зарплата в вашей компании должна быть больше нуля!");
+        }
+        else {
+            this.salary = salary;
+        }
+
     }
 }

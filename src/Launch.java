@@ -30,8 +30,9 @@ public class Launch {
         employeeBook.printEmployeeNames();
         employeeBook.indexSalaries(5);
         System.out.println();
-        System.out.println("Отдел 1. Сотрудник с максимальной ЗП - " + employeeBook.findMaxSalaryDepartmentEmployee(1));
-        System.out.println("Отдел 1. Сотрудник с минимальной ЗП - " + employeeBook.findMinSalaryDepartmentEmployee(1));
+        System.out.println("Отдел 1. Сотрудник с максимальной ЗП - " + employeeBook.findMaxDepartmentSalaryEmployee(1));
+        int maxSalary = employeeBook.findMaxSalaryEmployee().getSalary();
+        System.out.println("Отдел 1. Сотрудник с минимальной ЗП - " + employeeBook.findMinDepartmentSalaryEmployee(1,maxSalary));
         System.out.println("Отдел 1. Сумма затрат на ЗП: " + employeeBook.summarizeDepartmentSalaries(1));
         System.out.println("Отдел 1. Среднее значение ЗП: " + employeeBook.calculateAverageDepartmentSalary(1));
         employeeBook.indexDepartmentSalaries(1,5);
@@ -40,7 +41,6 @@ public class Launch {
         employeeBook.findEmployeesWithLessSalary(100000);
         employeeBook.findEmployeesWithMoreSalary(120000);
         employeeBook.findEmployeesWithLessSalary(300000);
-        employeeBook.removeEmployee(employee1);
         employeeBook.removeEmployee("Третьяков Ивангай Кошкович");
         employeeBook.removeEmployee(5);
         employeeBook.findEmployeesWithLessSalary(300000);
@@ -54,6 +54,11 @@ public class Launch {
         //employeeBook.findMaxSalaryDepartmentEmployee(3);
         //employeeBook.findMinSalaryDepartmentEmployee(3);
         //employeeBook.calculateAverageDepartmentSalary(3);
+        System.out.println(employeeBook.findMaxDepartmentSalaryEmployee(9));
+        //System.out.println(employeeBook.findMinDepartmentSalaryEmployee(3, maxSalary));
+        //employeeBook.addEmloyee("Васичкин Василий",  8, 0);
+        //employeeBook.changeSalary("Василиса Прекрасная Надеждовна",-4);
+
 
         }
 
