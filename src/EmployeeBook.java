@@ -122,42 +122,30 @@ public class EmployeeBook {
         return sum;
     }
 
-    public Employee findMinDepartmentSalaryEmployee(int department, int maxSalary) {
-        if (maxSalary <= 0) {
-            throw new RuntimeException("Максимальная зарплата в вашей компании должна быть больше нуля!");
-        }
-        else {
-            boolean departmentIsEmpty = true;
-            int minDepartmentSalary = maxSalary;
-            Employee minDepartmentSalaryEmployee = null;
-            for (Employee employee : base) {
-                if (employee.getDepartment() == department && employee.getSalary() < minDepartmentSalary){
-                    departmentIsEmpty = false;
-                    minDepartmentSalary = employee.getSalary();
-                    minDepartmentSalaryEmployee = employee;
-                }
+    public Employee findMinDepartmentSalaryEmployee(int department) {
+        Employee minDepartmentSalaryEmployee = null;
+        for (Employee employee : base) {
+            if (employee.getDepartment() == department &&
+                (minDepartmentSalaryEmployee == null || employee.getSalary() < minDepartmentSalaryEmployee.getSalary())) {
+                minDepartmentSalaryEmployee = employee;
             }
-            if (departmentIsEmpty) {
-                throw new RuntimeException("В " + department + " отделе нет сотрудников!");
-            }
-            return minDepartmentSalaryEmployee;
         }
-
+        if (minDepartmentSalaryEmployee == null) {
+            throw new RuntimeException("В " + department + " отделе нет сотрудников!");
+        }
+        return minDepartmentSalaryEmployee;
 
     }
 
     public Employee findMaxDepartmentSalaryEmployee(int department) {
-        boolean departmentIsEmpty = true;
-        int maxDepartmentSalary = 0;
         Employee maxDepartmentSalaryEmployee = null;
         for (Employee employee : base) {
-            if (employee.getDepartment() == department && employee.getSalary() > maxDepartmentSalary){
-                departmentIsEmpty = false;
-                maxDepartmentSalary = employee.getSalary();
+            if (employee.getDepartment() == department &&
+                    (maxDepartmentSalaryEmployee == null || employee.getSalary() > maxDepartmentSalaryEmployee.getSalary())){
                 maxDepartmentSalaryEmployee = employee;
             }
         }
-        if (departmentIsEmpty) {
+        if (maxDepartmentSalaryEmployee == null) {
             throw new RuntimeException("В " + department + " отделе нет сотрудников!");
         }
         return maxDepartmentSalaryEmployee;

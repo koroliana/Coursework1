@@ -50,9 +50,6 @@ public class Employee {
         if (salary <= 0) {
             throw new RuntimeException("Зарплата в вашей компании должна быть больше нуля!");
         }
-        else {
-            this.salary = salary;
-        }
-
+        this.salary = salary;
     }
 }
