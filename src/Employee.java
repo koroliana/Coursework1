@@ -1,17 +1,28 @@
 public class Employee {
-    static int id = 0;
+    private static int counterId = 0;
+    private final int id;
     private String fullName;
-    private byte department;
+    private int department;
     private int salary;
 
-    public Employee(String fullName, byte department, int salary) {
-        id = id + 1;
-        this.fullName = fullName;
-        this.department = department;
-        this.salary = salary;
+    public Employee(String fullName, int department, int salary) {
+        if (salary <= 0) {
+            throw new RuntimeException("Зарплата в вашей компании должна быть больше нуля!");
+        }
+        else {
+            this.id=counterId ++;
+            this.fullName = fullName;
+            this.department = department;
+            this.salary = salary;
+        }
+
     }
 
-    public static int getId() {
+    @Override
+    public String toString() {
+        return fullName + ", отдел: " + department + ", зарплата: " + salary;
+    }
+    public int getId() {
         return id;
     }
 
@@ -19,7 +30,11 @@ public class Employee {
         return fullName;
     }
 
-    public byte getDepartment() {
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public int getDepartment() {
         return department;
     }
 
@@ -32,6 +47,9 @@ public class Employee {
     }
 
     public void setSalary(int salary) {
+        if (salary <= 0) {
+            throw new RuntimeException("Зарплата в вашей компании должна быть больше нуля!");
+        }
         this.salary = salary;
     }
 }
